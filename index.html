@@ -1,12 +1,579 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Leafari Privacy Policy</title>
+  <meta
+    name="description"
+    content="Privacy Policy for Leafari. Learn how Leafari handles your data, local storage, and privacy."
+  />
+  <style>
+    :root {
+      --bg: #08110d;
+      --bg-soft: #0d1712;
+      --card: rgba(18, 31, 24, 0.72);
+      --card-strong: rgba(16, 28, 22, 0.9);
+      --line: rgba(168, 217, 186, 0.14);
+      --text: #edf7f0;
+      --muted: #b5c7bb;
+      --accent: #7ee2a8;
+      --accent-strong: #4fcf88;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(84, 191, 128, 0.18), transparent 32%),
+        radial-gradient(circle at top right, rgba(77, 207, 136, 0.12), transparent 28%),
+        linear-gradient(180deg, #07100c 0%, #0a1510 48%, #07100c 100%);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    .background-glow {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .background-glow::before,
+    .background-glow::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(80px);
+      opacity: 0.5;
+    }
+
+    .background-glow::before {
+      width: 340px;
+      height: 340px;
+      left: -60px;
+      top: 90px;
+      background: rgba(93, 255, 161, 0.12);
+    }
+
+    .background-glow::after {
+      width: 300px;
+      height: 300px;
+      right: -40px;
+      top: 240px;
+      background: rgba(69, 181, 118, 0.11);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 72px 0 28px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      background:
+        linear-gradient(135deg, rgba(126, 226, 168, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(10, 20, 15, 0.76);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      padding: 42px;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -60px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(126, 226, 168, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(126, 226, 168, 0.18);
+      border-radius: 999px;
+      background: rgba(126, 226, 168, 0.08);
+      color: #d6f8e3;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(126, 226, 168, 0.9);
+    }
+
+    h1 {
+      margin: 18px 0 14px;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-subtitle {
+      max-width: 740px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin: 0 0 24px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .meta-card {
+      min-width: 180px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .meta-label {
+      font-size: 0.78rem;
+      color: #9cb3a3;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .meta-value {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #f4fcf6;
+    }
+
+    main {
+      padding: 8px 0 72px;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .toc {
+      position: sticky;
+      top: 24px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      padding: 22px 18px;
+    }
+
+    .toc h2 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .toc nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .toc a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 9px 10px;
+      border-radius: 10px;
+      transition: 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .toc a:hover {
+      background: rgba(126, 226, 168, 0.08);
+      color: var(--text);
+    }
+
+    .policy-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    .section {
+      border-radius: var(--radius-lg);
+      background: var(--card-strong);
+      border: 1px solid rgba(168, 217, 186, 0.08);
+      padding: 28px;
+    }
+
+    .section + .section {
+      margin-top: 16px;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .section p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    .list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .list li {
+      position: relative;
+      padding: 12px 14px 12px 42px;
+      border: 1px solid rgba(168, 217, 186, 0.08);
+      background: rgba(255, 255, 255, 0.025);
+      border-radius: 14px;
+      color: var(--text);
+    }
+
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+
+    .callout {
+      margin-top: 16px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(126, 226, 168, 0.08);
+      border: 1px solid rgba(126, 226, 168, 0.12);
+      color: #daf7e4;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .contact-box {
+      flex: 1 1 260px;
+      border-radius: 16px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .contact-label {
+      color: #9cb3a3;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .contact-value a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-value a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      padding: 0 0 56px;
+    }
+
+    .footer-card {
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: rgba(11, 19, 14, 0.7);
+      padding: 18px 20px;
+      color: #9fb2a5;
+      font-size: 0.94rem;
+      text-align: center;
+    }
+
+    @media (max-width: 920px) {
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding-top: 28px;
+      }
+
+      .hero {
+        padding: 26px 20px;
+        border-radius: 24px;
+      }
+
+      .policy-card {
+        padding: 12px;
+      }
+
+      .section {
+        padding: 22px 18px;
+      }
+
+      h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>Leafari Privacy Policy</h1>
-  <p>This page is under construction.</p>
+  <div class="background-glow"></div>
+
+  <header class="container">
+    <section class="hero">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Privacy Policy
+      </div>
+
+      <h1>Privacy Policy for Leafari</h1>
+
+      <p class="hero-subtitle">
+        Leafari is a mobile app designed to help users document, organize, and review
+        personal cannabis-related information, such as journal entries, consumption notes,
+        and plant-related tracking data.
+      </p>
+
+      <div class="hero-meta">
+        <div class="meta-card">
+          <div class="meta-label">Last updated</div>
+          <div class="meta-value">March 17, 2026</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Storage model</div>
+          <div class="meta-value">Local on device</div>
+        </div>
+        <div class="meta-card">
+          <div class="meta-label">Server transfer</div>
+          <div class="meta-value">None at this time</div>
+        </div>
+      </div>
+    </section>
+  </header>
+
+  <main class="container">
+    <div class="content-grid">
+      <aside class="toc">
+        <h2>Contents</h2>
+        <nav>
+          <a href="#overview">1. Overview</a>
+          <a href="#data-we-process">2. Data We Process</a>
+          <a href="#local-storage">3. Local Storage Only</a>
+          <a href="#data-use">4. How Your Data Is Used</a>
+          <a href="#data-sharing">5. Data Sharing</a>
+          <a href="#retention">6. Data Retention and Deletion</a>
+          <a href="#children">7. Children and Minimum Age</a>
+          <a href="#future-features">8. Future Changes to Features</a>
+          <a href="#changes">9. Changes to This Privacy Policy</a>
+          <a href="#contact">10. Contact</a>
+        </nav>
+      </aside>
+
+      <section class="policy-card">
+        <section class="section" id="overview">
+          <h2>1. Overview</h2>
+          <p>
+            Protecting your privacy is important to us. Leafari is currently designed to
+            process and store user data locally on the user's device only.
+          </p>
+          <p>
+            At this time, Leafari does not require a user account and does not send
+            personal data to external servers.
+          </p>
+        </section>
+
+        <section class="section" id="data-we-process">
+          <h2>2. Data We Process</h2>
+          <p>
+            Leafari may process information that you enter directly into the app, such as:
+          </p>
+          <ul class="list">
+            <li>journal entries</li>
+            <li>tracking data</li>
+            <li>plant-related notes</li>
+            <li>app settings and preferences</li>
+          </ul>
+          <div class="callout">
+            This information is processed solely for the purpose of providing the app’s
+            features.
+          </div>
+        </section>
+
+        <section class="section" id="local-storage">
+          <h2>3. Local Storage Only</h2>
+          <p>All data entered into Leafari is currently stored locally on your device.</p>
+          <p>At this time:</p>
+          <ul class="list">
+            <li>no personal data is transmitted to our servers</li>
+            <li>no personal data is shared with third parties</li>
+            <li>no analytics or advertising SDKs are used</li>
+            <li>no cloud sync is provided</li>
+            <li>no photo scanning or image analysis is performed</li>
+          </ul>
+        </section>
+
+        <section class="section" id="data-use">
+          <h2>4. How Your Data Is Used</h2>
+          <p>
+            Your data is used only to enable the functionality of the app on your own
+            device, including displaying, editing, organizing, and deleting your entries
+            and settings.
+          </p>
+        </section>
+
+        <section class="section" id="data-sharing">
+          <h2>5. Data Sharing</h2>
+          <p>
+            Leafari does not sell, rent, or share your personal data with third parties.
+          </p>
+          <p>
+            Because Leafari currently operates without backend servers, your data remains
+            under your control on your own device.
+          </p>
+        </section>
+
+        <section class="section" id="retention">
+          <h2>6. Data Retention and Deletion</h2>
+          <p>
+            You can delete your content directly within the app at any time.
+          </p>
+          <p>
+            If you delete the app from your device, the locally stored app data is also
+            removed, subject to your device and backup settings.
+          </p>
+        </section>
+
+        <section class="section" id="children">
+          <h2>7. Children and Minimum Age</h2>
+          <p>
+            Leafari is not intended for children and is not directed to persons under the
+            age of 18.
+          </p>
+          <p>
+            Users are responsible for ensuring that their use of the app complies with
+            applicable local laws and regulations.
+          </p>
+        </section>
+
+        <section class="section" id="future-features">
+          <h2>8. Future Changes to Features</h2>
+          <p>
+            Leafari may introduce new features in the future, such as optional cloud
+            services, image-based plant analysis, or other tools that could require
+            different data processing.
+          </p>
+          <p>
+            If our data practices change, this Privacy Policy will be updated accordingly,
+            and the “Last updated” date at the top of this page will be revised.
+          </p>
+        </section>
+
+        <section class="section" id="changes">
+          <h2>9. Changes to This Privacy Policy</h2>
+          <p>
+            We may update this Privacy Policy from time to time to reflect changes in the
+            app, legal requirements, or data practices.
+          </p>
+          <p>
+            We encourage users to review this page periodically.
+          </p>
+        </section>
+
+        <section class="section" id="contact">
+          <h2>10. Contact</h2>
+          <p>
+            If you have questions about this Privacy Policy or the app, you can contact us at:
+          </p>
+
+          <div class="contact-card">
+            <div class="contact-box">
+              <div class="contact-label">Support Email</div>
+              <div class="contact-value">
+                <a href="mailto:support@leafari.app">support@leafari.app</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <footer class="container">
+    <div class="footer-card">
+      © 2026 Leafari. This page describes the current privacy handling of the app as of the
+      date listed above.
+    </div>
+  </footer>
 </body>
 </html>
